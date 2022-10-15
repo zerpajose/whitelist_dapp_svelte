@@ -1,47 +1,48 @@
 <script>
-  import { onMount } from 'svelte';
-  import { CONTRACT_ADDRESS, CONTRACT_ABI } from "./constants";
-  import { Contract } from "ethers";
+  import { onMount } from 'svelte'
   import getProviderOrSigner from './web3modal'
+  import { checkIfAddressInWhitelist, getWhitelisted } from './functions'
 
-  export let checkIfAddressInWhitelist = () => {}
-  export let getNumberOfWhitelisted = () => {}
+  import { numberOfWhitelisted, joinedWhitelist, loading } from '../stores/store'
 
-  export let joinedWhitelist
-  let loading = false
+  let numberOfWhitelistedValue, joinedWhitelistValue, loadingValue
 
-  const getWhitelisted = async () => {
+	numberOfWhitelisted.subscribe((value) => {
+		numberOfWhitelistedValue = value
+	})
+
+  joinedWhitelist.subscribe((value) => {
+    joinedWhitelistValue = value
+  })
+
+  loading.subscribe((value) => {
+    loadingValue = value
+  })
+
+  const getWld = async () => {
     try {
       const signer = await getProviderOrSigner(true)
-
-      const whitelistContract = new Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer)
-
-      const tx = await whitelistContract.addAddressToWhitelist()
-      loading = true
-
-      await tx.wait()
-      loading = false
-
-      await getNumberOfWhitelisted()
-
-      joinedWhitelist = true
+      const hash = await getWhitelisted(signer)
+      console.log(`${hash}`);
+      
+      joinedWhitelist.set(true)
     } catch (err) {
       console.error(err)
     }
   }
 
   onMount(async () =>{
-    await checkIfAddressInWhitelist()
+    await checkIfAddressInWhitelist(await getProviderOrSigner(true))
   })
 </script>
 
-{#if joinedWhitelist}
+{#if joinedWhitelistValue}
   <h4><span class="badge bg-secondary">You already have joined to the Whitelist</span></h4>
 {:else}
-  {#if loading}
+  {#if loadingValue}
     <button class="button">Loading...</button>  
   {:else}
-  <button class="button" on:click={getWhitelisted}>Join to WL</button>
+  <button class="button" on:click={getWld}>Join to WL</button>
   {/if}
 {/if}
 

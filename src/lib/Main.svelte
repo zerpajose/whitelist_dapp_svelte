@@ -2,38 +2,45 @@
 // @ts-nocheck
 
   import { onMount } from 'svelte';
-  import { CONTRACT_ADDRESS, CONTRACT_ABI } from "./constants"
-  import { Contract } from "ethers"
   import getProviderOrSigner from './web3modal'
+  import { getNumberOfWhitelisted, checkIfAddressInWhitelist } from './functions'
 
   import Button from "./Button.svelte"
   import Logo from './Logo.svelte'
-  let numberOfWhitelisted, joinedWhitelist, chainID
 
-  const getNumberOfWhitelisted = async () => {
+  import { numberOfWhitelisted, joinedWhitelist } from '../stores/store'
+
+  let numberOfWhitelistedValue, joinedWhitelistValue, chainID
+
+	numberOfWhitelisted.subscribe((value) => {
+		numberOfWhitelistedValue = value;
+	})
+
+  joinedWhitelist.subscribe((value) => {
+    joinedWhitelistValue = value
+  })
+
+  const getNWhitelisted = async () => {
     try {
       const provider = await getProviderOrSigner()
+      const _numberOfWhitelisted = await getNumberOfWhitelisted(provider)
+      numberOfWhitelisted.set(_numberOfWhitelisted)
+      return _numberOfWhitelisted
 
-      const whitelistContract = new Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider)
-      
-      const _numberOfWhitelisted = await whitelistContract.numAddressesWhitelisted()
-      
-      numberOfWhitelisted =_numberOfWhitelisted
     } catch (err) {
       console.error(err)
     }
   }
 
-  const checkIfAddressInWhitelist = async () => {
+  const checkIfAddrInWL = async () => {
     try {
       const signer = await getProviderOrSigner(true)
-      const whitelistContract = new Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer)
 
-      const address = await signer.getAddress()
+      const _joinedWhitelist = await checkIfAddressInWhitelist(signer)
 
-      const _joinedWhitelist = await whitelistContract.whitelistedAddresses(address)
+      joinedWhitelist.set(_joinedWhitelist)
 
-      joinedWhitelist = _joinedWhitelist
+      return _joinedWhitelist
     } catch (err) {
       console.error(err)
     }
@@ -47,8 +54,8 @@
 
   onMount(async () => {
     chainID = await getChain()
-		await getNumberOfWhitelisted()
-    await checkIfAddressInWhitelist()
+		await getNWhitelisted()
+    await checkIfAddrInWL()
 	})
 
 </script>
@@ -61,13 +68,9 @@
       It's a NFT collection for developers in Crypto.
     </div>
     <div class="description">
-      {numberOfWhitelisted} have already joined the Whitelist
+      {numberOfWhitelistedValue} have already joined the Whitelist
     </div>
-    <Button
-      {joinedWhitelist}
-      checkIfAddressInWhitelist={() => checkIfAddressInWhitelist}
-      getNumberOfWhitelisted={() => getNumberOfWhitelisted}
-    />
+    <Button {joinedWhitelistValue} />
   </section>
   <section>
     <Logo />
