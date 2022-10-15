@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
   import { onMount } from 'svelte';
   import { CONTRACT_ADDRESS, CONTRACT_ABI } from "./constants"
   import { Contract } from "ethers"
