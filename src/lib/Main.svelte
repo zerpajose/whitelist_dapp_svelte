@@ -52,21 +52,25 @@
 </script>
 
 {#if chainID === 80001}
-<div class="main">
-  <h1 class="title">Welcome to Crypto Devs!</h1>
-  <div class="description">
-    Its an NFT collection for developers in Crypto.
-  </div>
-  <div class="description">
-    {numberOfWhitelisted} have already joined the Whitelist
-  </div>
-  <Button
-    {joinedWhitelist}
-    checkIfAddressInWhitelist={() => checkIfAddressInWhitelist}
-    getNumberOfWhitelisted={() => getNumberOfWhitelisted}
-  />
-  <Logo />
-</div>
+<main>
+  <section>
+    <h1 class="title">Welcome to Crypto Devs!</h1>
+    <div class="description">
+      It's a NFT collection for developers in Crypto.
+    </div>
+    <div class="description">
+      {numberOfWhitelisted} have already joined the Whitelist
+    </div>
+    <Button
+      {joinedWhitelist}
+      checkIfAddressInWhitelist={() => checkIfAddressInWhitelist}
+      getNumberOfWhitelisted={() => getNumberOfWhitelisted}
+    />
+  </section>
+  <section>
+    <Logo />
+  </section>
+</main>
 {:else}
 <div class="spinner-border" role="status">
   <span class="visually-hidden">Loading...</span>
@@ -75,7 +79,7 @@
 {/if}
 
 <style>
-.main {
+main {
   min-height: 90vh;
   display: flex;
   flex-direction: row;

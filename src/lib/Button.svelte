@@ -36,7 +36,7 @@
 </script>
 
 {#if joinedWhitelist}
-  <span>You are Whitelisted</span>
+  <h4><span class="badge bg-secondary">You already have joined to the Whitelist</span></h4>
 {:else}
   {#if loading}
     <button class="button">Loading...</button>  
