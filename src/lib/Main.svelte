@@ -70,7 +70,7 @@
     <div class="description">
       {numberOfWhitelistedValue} have already joined the Whitelist
     </div>
-    <Button {joinedWhitelistValue} />
+    <Button />
   </section>
   <section>
     <Logo />
@@ -80,7 +80,6 @@
 <div class="spinner-border" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
-<span>Please connect your wallet to Mumbai Network (Polygon Testnet)</span>
 {/if}
 
 <style>

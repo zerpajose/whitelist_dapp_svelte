@@ -1,5 +1,5 @@
 <script>
-  export let provider
+  export let address
 </script>
 
 <nav class="navbar navbar-expand-lg bg-light">
@@ -15,7 +15,7 @@
     
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <h4 class="badge bg-secondary">
-        <span class="badge bg-light text-dark">collaborator</span> {provider.selectedAddress.slice(0, 5)}...{provider.selectedAddress.slice(-4)}
+        <span class="badge bg-light text-dark">collaborator</span> {address.slice(0, 5)}...{address.slice(-4)}
       </h4>
     </div>
   </div>

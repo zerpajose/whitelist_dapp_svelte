@@ -21,14 +21,9 @@ const getProviderOrSigner = async (needSigner = false) => {
   
   const provider = new ethers.providers.Web3Provider(instance)
 
-  provider.on("chainChanged", (chainId) => {
-    console.log(chainId);
-  });
-
   // const network = await provider.getNetwork();
   // const chainId = network.chainId;
   // console.log(`${chainId}`);
-  
 
   if (needSigner) {
     const signer = provider.getSigner()
