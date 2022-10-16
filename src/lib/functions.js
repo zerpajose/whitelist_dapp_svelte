@@ -1,5 +1,5 @@
-import { CONTRACT_ADDRESS, CONTRACT_ABI } from "./constants"
-import { Contract } from "ethers"
+import { CONTRACT_ADDRESS, CONTRACT_ABI } from './constants'
+import { Contract } from 'ethers'
 
 import { numberOfWhitelisted, loading, joinedWhitelist } from '../stores/store'
 let numberOfWhitelistedValue, loadingValue, joinedWhitelistValue

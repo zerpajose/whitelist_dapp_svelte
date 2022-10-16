@@ -7,7 +7,7 @@
   const showModal = () => open(
     Popup,
     {
-      message: "Please connect your wallet to Mumbai Network (Polygon Testnet) and refresh browser"
+      message: 'Please connect your wallet to Mumbai Network (Polygon Testnet)'
     }
   )
   const closeModal = () => close()

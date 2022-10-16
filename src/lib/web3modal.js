@@ -1,19 +1,19 @@
-import { ethers } from "ethers"
-import Web3Modal from "web3modal"
+import { ethers } from 'ethers'
+import Web3Modal from 'web3modal'
 
 const getProviderOrSigner = async (needSigner = false) => {
   const providerOptions = {
     injected: {
       display: {
-        name: "Injected",
-        description: "Connect with the provider in your Browser"
+        name: 'Injected',
+        description: 'Connect with the provider in your Browser'
       },
       package: null
     }
   }
   
   const web3Modal = new Web3Modal({
-    network: "goerli",
+    network: 'goerli',
     providerOptions  // required
   })
   

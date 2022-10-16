@@ -34,6 +34,7 @@
       
       window.ethereum.on('chainChanged', (chainId) => {
         chainConnected.set(chainId)
+        window.location.reload()
       })
     }
   }

@@ -1,11 +1,11 @@
 <script>
 // @ts-nocheck
 
-  import { onMount } from 'svelte';
+  import { onMount } from 'svelte'
   import getProviderOrSigner from '../lib/web3modal'
   import { getNumberOfWhitelisted, checkIfAddressInWhitelist } from '../lib/functions'
 
-  import Button from "./Button.svelte"
+  import Button from './Button.svelte'
   import Logo from './Logo.svelte'
 
   import { numberOfWhitelisted, joinedWhitelist } from '../stores/store'
