@@ -2,8 +2,8 @@
 // @ts-nocheck
 
   import { onMount } from 'svelte';
-  import getProviderOrSigner from './web3modal'
-  import { getNumberOfWhitelisted, checkIfAddressInWhitelist } from './functions'
+  import getProviderOrSigner from '../lib/web3modal'
+  import { getNumberOfWhitelisted, checkIfAddressInWhitelist } from '../lib/functions'
 
   import Button from "./Button.svelte"
   import Logo from './Logo.svelte'

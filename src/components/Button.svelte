@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte'
-  import getProviderOrSigner from './web3modal'
-  import { checkIfAddressInWhitelist, getWhitelisted } from './functions'
+  import getProviderOrSigner from '../lib/web3modal'
+  import { checkIfAddressInWhitelist, getWhitelisted } from '../lib/functions'
 
   import { numberOfWhitelisted, joinedWhitelist, loading } from '../stores/store'
 

@@ -1,10 +1,10 @@
 <script>
 
-  import Content from './lib/Content.svelte'
+  import Content from './components/Content.svelte'
   import Modal from 'svelte-simple-modal'
 
-  import Main from './lib/Main.svelte'
-  import Navbar from './lib/Navbar.svelte'
+  import Main from './components/Main.svelte'
+  import Navbar from './components/Navbar.svelte'
 
   import getProviderOrSigner from './lib/web3modal'
 
