@@ -36,6 +36,10 @@
         chainConnected.set(chainId)
         window.location.reload()
       })
+
+      window.ethereum.on('accountsChanged', ()=>{
+        window.location.reload()
+      });
     }
   }
 
